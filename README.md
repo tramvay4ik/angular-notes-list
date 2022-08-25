@@ -1,5 +1,5 @@
 # angular-notes-list
-My firs test task for angular learning
+My first test task for angular learning
 
 # Notes List
 
