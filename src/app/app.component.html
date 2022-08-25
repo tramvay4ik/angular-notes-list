@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="head">
+        <h1>{{title}}</h1>
+        <h2>
+            <span [ngClass]="items.length === 0 ? 'text-warn' : 'text-primary'">{{items.length}} </span>
+            <span *ngIf="items.length === 1; else elseBlock">item</span>
+            <ng-template #elseBlock>items</ng-template>
+        </h2>
+    </div>
+    <div class="content">
+        <div class="block">
+            <p>Please enter a text to the field below</p>
+            <div class="row">
+                <textarea #newItem placeholder="Type some text..."
+                    (keyup.enter)="addItem(newItem.value); newItem.value = ''" id="addItemInput"></textarea>
+            </div>
+            <button class="btn btn-primary" (click)="addItem(newItem.value)">Add</button>
+        </div>
+        <div class="block" *ngIf="items.length !== 0">
+            <ul>
+                <li *ngFor="let item of items">
+                    <app-item (removeItem)="removeItem(item)" (setFirst)="setFirst(item)" [item]="item"></app-item>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

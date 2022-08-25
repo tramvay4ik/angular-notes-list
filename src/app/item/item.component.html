@@ -1,0 +1,21 @@
+<div class="item">
+    <div *ngIf="!editable">
+        <p>{{item.description}}</p>
+        <div class="btn-wrapper row" *ngIf="!editable">
+            <button class="btn" (click)="editable = !editable">Edit</button>
+            <button class="btn btn-warn" (click)="removeItem.emit()">Delete</button>
+        </div>
+    </div>
+
+    <div *ngIf="editable">
+        <div class="row">
+            <textarea #editedItem placeholder="Edit your item" (keyup.enter)="saveItem(editedItem.value)"
+                [value]="item.description" [class.warn]="showErrors"></textarea>
+        </div>
+        <p class="text-warn" *ngIf="showErrors">Please enter you text</p>
+        <div class="btn-wrapper row">
+            <button class="btn" (click)="editable = !editable">Cancel</button>
+            <button class="btn btn-primary" (click)="saveItem(editedItem.value); setFirst.emit()">Save</button>
+        </div>
+    </div>
+</div>
